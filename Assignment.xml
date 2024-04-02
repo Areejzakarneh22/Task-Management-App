@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Task_Management__App
+{
+    internal class Assignment
+    {
+        public void AssignTask()
+        {
+            CRUD1 cRUD1 = new CRUD1();
+            List<TaskBasics> taskList = CRUD1.tasks;
+
+            Console.WriteLine("Which task ID do you want to assign ?");
+            cRUD1.ReadTask();
+            int id = Convert.ToInt32(Console.ReadLine());
+
+            TaskBasics taskToAssign =taskList.Find(t => t.Id == id);
+            if (taskToAssign != null)
+            {
+                Console.WriteLine("Assign task to (Username or Identifier):");
+                string assignee = Console.ReadLine();
+                taskToAssign.Assignee = assignee;
+                Console.WriteLine("Task assigned successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Task not found.");
+            }
+        }
+    }
+}
