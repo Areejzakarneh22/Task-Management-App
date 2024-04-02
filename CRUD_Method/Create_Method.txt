@@ -1,18 +1,26 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using static System.Net.Mime.MediaTypeNames;
-namespace Task_Management__App
+
+namespace Task_Management_App
 {
-    internal class Program 
-    { 
-    
+    /// <summary>
+    /// Main program class responsible for managing tasks.
+    /// </summary>
+    internal class Program
+    {
+        /// <summary>
+        /// List to store all tasks.
+        /// </summary>
         static List<TaskBasics> tasks = new List<TaskBasics>();
+        
+        /// <summary>
+        /// Counter for generating unique IDs for tasks.
+        /// </summary>
         static int IdCounter = 1;
 
+        /// <summary>
+        /// Creates a new task and adds it to the list of tasks.
+        /// </summary>
         static void CreateTask()
         {
             string title; string description; string assignee; string department;
@@ -40,20 +48,32 @@ namespace Task_Management__App
             tasks.Add(newTask);
             Console.WriteLine("Task created successfully!");
         }
+
+        /// <summary>
+        /// Reads and displays tasks.
+        /// </summary>
         static void ReadTask() { }
+
+        /// <summary>
+        /// Updates an existing task.
+        /// </summary>
         static void UpdateTask() { }
+
+        /// <summary>
+        /// Deletes an existing task.
+        /// </summary>
         static void deleteTask() { }
-    
 
-
-
-
-        static void Main(string[] args) {
-
-         bool exit = false;
-         while (!exit)
+        /// <summary>
+        /// Main entry point of the program.
+        /// </summary>
+        /// <param name="args">Command-line arguments.</param>
+        static void Main(string[] args)
+        {
+            bool exit = false;
+            while (!exit)
             {
-                Console.WriteLine(" \n \n Welcome again, what do you want to do?");
+                Console.WriteLine("\n\nWelcome again, what do you want to do?");
                 Console.WriteLine("1. Create 2. Read 3. Update 4. Delete 5. Exit");
 
                 int choice;
@@ -66,11 +86,11 @@ namespace Task_Management__App
 
                 switch (choice)
                 {
-                    case 1: CreateTask() ; break;
-                    case 2: ReadTask()  ; break;
+                    case 1: CreateTask(); break;
+                    case 2: ReadTask(); break;
                     case 3: UpdateTask(); break;
                     case 4: deleteTask(); break;
-                    case 5: exit = true   ; break;
+                    case 5: exit = true; break;
                     default: Console.WriteLine("Bad option. Please try again.\n"); break;
                 }
             }
