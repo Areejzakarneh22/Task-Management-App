@@ -1,0 +1,166 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Serialization;
+namespace Task_Management__App
+{
+    internal class Program 
+    { 
+    
+        static List<TaskBasics> tasks = new List<TaskBasics>();
+        static int IdCounter = 1;
+
+        static void CreateTask()
+        {
+            string title; string description; string assignee; string department;
+
+            Console.WriteLine("Write Task Title");
+            title = Console.ReadLine();
+
+            Console.WriteLine("Write Task Description");
+            description = Console.ReadLine();
+
+            Console.WriteLine("Write Task assigned for who ");
+            assignee = Console.ReadLine();
+
+            Console.WriteLine("Write Task Department");
+            department = Console.ReadLine();
+
+            TaskBasics newTask = new TaskBasics
+            {
+                Id = IdCounter++,
+                Title = title,
+                Description = description,
+                Assignee = assignee,
+                Department = department
+            };
+            tasks.Add(newTask);
+            Console.WriteLine("Task created successfully!");
+        }
+        static void ReadTask() 
+        {
+            if (tasks.Count == 0)
+            {
+                Console.WriteLine("No tasks found.");
+                return;
+            }
+
+            Console.WriteLine("All Tasks:");
+            foreach (var task in tasks)
+            {
+                Console.WriteLine($"ID: {task.Id}, Title: {task.Title}, Description: {task.Description}, Assignee: {task.Assignee} ,Department :{task.Department}");
+            }
+        }
+        static void UpdateTask( )
+        {
+            Console.WriteLine("Which task ID do you want to update ?");
+            ReadTask();
+            int id= Convert.ToInt32(Console.ReadLine());
+
+            TaskBasics taskToUpdate = tasks.Find(t => t.Id == id);
+            if (taskToUpdate != null)
+            {
+                Console.WriteLine("Write new Title");
+                string title = Console.ReadLine();
+                taskToUpdate.Title = title;
+
+                Console.WriteLine("Write new assignee");
+                string department = Console.ReadLine();
+                taskToUpdate.Department = department;
+
+                Console.WriteLine("Write new description");
+                string description = Console.ReadLine();
+                taskToUpdate.Description = description;
+
+                Console.WriteLine("Write new assignee");
+                string assignee = Console.ReadLine();
+                taskToUpdate.Assignee = assignee;
+
+                Console.WriteLine("Task updated successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Task not found.");
+            }
+        }
+        static void deleteTask() 
+        {
+            Console.WriteLine("Which task ID do you want to update ?");
+            ReadTask();
+            int id = Convert.ToInt32(Console.ReadLine());
+
+            TaskBasics taskToDelete = tasks.Find(t => t.Id == id);
+            if (taskToDelete != null)
+            {
+                tasks.Remove(taskToDelete);
+                Console.WriteLine("Task deleted successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Task not found.");
+            }
+
+        }
+
+
+
+
+        static void SaveTasks(string filename)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Task>));
+            using (TextWriter writer = new StreamWriter(filename))
+            {
+                serializer.Serialize(writer, tasks);
+            }
+            Console.WriteLine("Tasks saved to XML file successfully!");
+        }
+
+        // Method to load tasks from XML file
+        static void LoadTasks(string filename)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Task>));
+            using (TextReader reader = new StreamReader(filename))
+            {
+                tasks = (List<TaskBasics>)serializer.Deserialize(reader);
+            }
+            Console.WriteLine("Tasks loaded from XML file successfully!");
+        }
+        
+
+
+
+        static void Main(string[] args) {
+
+         bool exit = false;
+         while (!exit)
+            {
+                Console.WriteLine("\n\nWelcome again, what do you want to do?");
+                Console.WriteLine("1. Create 2. Read 3. Update 4. Delete 5. Exit");
+
+                int choice;
+
+                if (!int.TryParse(Console.ReadLine(), out choice))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+                    continue;
+                }
+
+                switch (choice)
+                {
+                    case 1: CreateTask() ; break;
+                    case 2: ReadTask()  ; break;
+                    case 3: UpdateTask(); break;
+                    case 4: deleteTask(); break;
+                    case 5: exit = true   ; break;
+                    default: Console.WriteLine("Bad option. Please try again.\n"); break;
+                }
+            }
+
+            Console.WriteLine("All changes saved. Goodbye ^_^\n");
+        }
+    }
+}
