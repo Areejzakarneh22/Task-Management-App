@@ -3,33 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
+
+
 
 namespace Task_Management__App
 {
     internal class Comment
     {
-        public void comment()
-        {
-            CRUD1 cRUD1 = new CRUD1();
-            List<TaskBasics> taskList = CRUD1.tasks;
 
-            Console.WriteLine("Which task ID do you want to add ?");
-            cRUD1.ReadTask();
+        public void CommentTask()
+        {
+            string filePath = @"D:\saved.xml";
+            CRUD1 cRUD1 = new CRUD1();
+
+            List<TaskBasics> tasks = cRUD1.ReadXmlTasks(@"D:\saved.xml");
+
+
+            Console.WriteLine("Which task ID do you want to assign ?");
+            cRUD1.ReadXmlTasks(filePath);
             int id = Convert.ToInt32(Console.ReadLine());
 
-            TaskBasics taskToUpdate = taskList.Find(t => t.Id == id);
-            if (taskToUpdate != null)
+            XDocument xmlDoc = XDocument.Load(filePath);
+
+            XElement taskElement = xmlDoc.Descendants("Task")
+                                         .FirstOrDefault(e => e.Element("Id").Value == id.ToString());
+
+            if (taskElement != null)
             {
-                Console.WriteLine("Enter new description for the task:");
-                string newDescription = Console.ReadLine();
-                taskToUpdate.Description = newDescription;
-                Console.WriteLine("Task description updated successfully!");
+                Console.WriteLine(" New Comment for task number {0} ",id);
+                string description = Console.ReadLine();
+
+                // Update the Assignee attribute of the task element
+                taskElement.Element("Description").Value = description;
+
+                // Save the modified XML document
+                xmlDoc.Save(filePath);
+                Console.WriteLine("Task commented successfully!");
             }
             else
             {
                 Console.WriteLine("Task not found.");
             }
-
         }
     }
 }
