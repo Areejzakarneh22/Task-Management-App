@@ -28,11 +28,8 @@ namespace Task_Management__App
                 Console.WriteLine("1- Task CRUD Operations." +
                     "\r\n2- Task Assignments." +
                     "\r\n3- Task Comments." +
-                    "\r\n4- Task Categories." +
-                    "\r\n5- Pagination." +
-                    "\r\n6- Data Validation." +
-                    "\r\n7- Filtering criteria." +
-                    "\r\n8- Exit ");
+                    "\r\n4- Filtering criteria." +
+                    "\r\n5- Exit ");
 
                 int choice;
                 if (!int.TryParse(Console.ReadLine(), out choice))
@@ -46,8 +43,8 @@ namespace Task_Management__App
                     case 1: Choose2(); break;
                     case 2: A.AssignTask(); break;
                     case 3: c.CommentTask();break;
-                    case 7: f.ChooseFilter();break;
-                    case 8: exit = true; break;
+                    case 4: f.ChooseFilter();break;
+                    case 5: exit = true; break;
                     default: Console.WriteLine("Bad option. Please try again.\n"); break;
                 }
             }
