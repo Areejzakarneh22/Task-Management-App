@@ -1,24 +1,83 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Tasks>
   <Task>
-    <Id>2</Id>
-    <Title>Second</Title>
-    <Description>Some</Description>
-    <Assignee>Sara</Assignee>
+    <Id>1</Id>
+    <Title>First</Title>
+    <Description>this is the first Task </Description>
+    <Assignee>Sara ibrahim</Assignee>
     <Department>CS</Department>
+    <Category>A</Category>
   </Task>
   <Task>
-    <Id>3</Id>
-    <Title>Third task</Title>
+    <Id>2</Id>
+    <Title>second</Title>
     <Description>This the first success attemp </Description>
     <Assignee>Areej</Assignee>
     <Department>CSE</Department>
+    <Category>B</Category>
   </Task>
   <Task>
-    <Id>4</Id>
+    <Id>3</Id>
     <Title>New</Title>
     <Description>New desc </Description>
     <Assignee>mohammad</Assignee>
     <Department>Dev</Department>
+    <Category>B</Category>
+  </Task>
+  <Task>
+    <Id>4</Id>
+    <Title>attemp </Title>
+    <Description>hi everyone</Description>
+    <Assignee>doha</Assignee>
+    <Department>dev</Department>
+    <Category>C</Category>
+  </Task>
+  <Task>
+    <Id>5</Id>
+    <Title>hi </Title>
+    <Description>hi </Description>
+    <Assignee>hadeel</Assignee>
+    <Department>dev</Department>
+    <Category>C</Category>
+  </Task>
+  <Task>
+    <Id>6</Id>
+    <Title>a</Title>
+    <Description>a</Description>
+    <Assignee>a</Assignee>
+    <Department>a</Department>
+    <Category>defult </Category>
+  </Task>
+  <Task>
+    <Id>7</Id>
+    <Title></Title>
+    <Description>f</Description>
+    <Assignee>f</Assignee>
+    <Department>f</Department>
+    <Category>f</Category>
+  </Task>
+  <Task>
+    <Id>8</Id>
+    <Title>req</Title>
+    <Description>this req</Description>
+    <Assignee>mohammad</Assignee>
+    <Department>dev</Department>
+    <Category>A</Category>
+  </Task>
+  <Task>
+    <Id>9</Id>
+    <Title>write an essay </Title>
+    <Description>you should write 30 sentence of yourself</Description>
+    <Assignee>mohammad </Assignee>
+    <Department>cse</Department>
+    <Category>A</Category>
+  </Task>
+  <Task>
+    <Id>10</Id>
+    <Title>Day Mo</Title>
+    <Description>some </Description>
+    <Assignee>hadee</Assignee>
+    <Department>DEV</Department>
+    <Category>B</Category>
   </Task>
 </Tasks>
